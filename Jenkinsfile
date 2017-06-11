@@ -25,7 +25,19 @@ pipeline {
     }
     stage('Test') {
       steps {
-        bat(script: 'test', returnStdout: true)
+        parallel(
+          "Test": {
+            bat(script: 'test', returnStdout: true)
+            
+          },
+          "load": {
+            script {
+              echo test
+            }
+            
+            
+          }
+        )
       }
     }
   }
