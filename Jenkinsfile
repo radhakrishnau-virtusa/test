@@ -1,7 +1,7 @@
 pipeline {
   agent {
-    node {
-      label 't'
+    dockerfile {
+      filename 'hhhh'
     }
     
   }
@@ -36,6 +36,20 @@ pipeline {
             }
             
             echo 'kjv'
+            
+          }
+        )
+      }
+    }
+    stage('thhhh') {
+      steps {
+        parallel(
+          "thhhh": {
+            readTrusted 'gg'
+            
+          },
+          "": {
+            echo 'hhh'
             
           }
         )
