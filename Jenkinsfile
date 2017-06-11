@@ -1,12 +1,31 @@
 pipeline {
-  agent any
+  agent {
+    node {
+      label 't'
+    }
+    
+  }
   stages {
-    stage('test1') {
+    stage('Build') {
       steps {
-        timestamps() {
-          bat(script: 'hostname', returnStdout: true)
-        }
-        
+        parallel(
+          "test": {
+            timestamps() {
+              bat(script: 'hostname', returnStdout: true)
+            }
+            
+            
+          },
+          "test24": {
+            echo 'fg'
+            
+          }
+        )
+      }
+    }
+    stage('Test') {
+      steps {
+        bat(script: 'test', returnStdout: true)
       }
     }
   }
